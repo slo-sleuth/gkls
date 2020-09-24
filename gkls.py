@@ -1,5 +1,6 @@
 #/usr/bin/env python3
-# Dependecies: python-magic (pip3 install python-magic)
+
+# Dependecies: python-magic, click
 # MacOS: libmagic (brew install libmagic)
 # Windows: libmagic dll
 
@@ -255,10 +256,10 @@ def construct_db(db: str) -> sqlite3:
             FullPath,
             isDir,
             Size,
-            datetime(mtime, 'unixepoch', 'localtime') as Mtime,
-            datetime(atime, 'unixepoch', 'localtime') as Atime,
-            datetime(ctime, 'unixepoch', 'localtime') as Ctime,
-            datetime(btime, 'unixepoch', 'localtime') as Btime,
+            datetime(mtime, 'unixepoch') as Mtime,
+            datetime(atime, 'unixepoch') as Atime,
+            datetime(ctime, 'unixepoch') as Ctime,
+            datetime(btime, 'unixepoch') as Btime,
             UID,
             GID,
             iNode,
@@ -281,10 +282,12 @@ def construct_db(db: str) -> sqlite3:
 def main():
 
     parser = argparse.ArgumentParser(description='Extract metadata from \
-        Graykey full files extraction.', epilog='Offsets are shown to the \
-        local file record in the zip file for validation purposes.')
+        Graykey full files extraction.', epilog='The offset  to the local \
+            file record in the original ZIP file is provided for research and \
+            validation purposes.')
     parser.add_argument('ZIP', help='The Graykey "*_full_files.zip" archive')
-    parser.add_argument('DB', help='The output SQLite database')
+    parser.add_argument('DB', help='The output SQLite database (must not \
+            exist)')
     parser.add_argument('-t', '--type', action='store_true', 
         help='Determine file type (slow)')
     
