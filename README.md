@@ -208,4 +208,4 @@ For each extended attribute:
 
 Attribute keys are UTF-8 encoded strings, but attribute keys can be any binary value.  I have observed them to be integers, floats (most often Mac Absolute Time), strings, and binary plists.  
 
-The glks.py script attempts to detect different values and interpret them.  I provides the original (labeled "raw" as well as the interpreted value for comparison.
+The glks.py script attempts to detect different values and interpret them.  I provides the original (labeled "raw") as well as the interpreted value for comparison.
